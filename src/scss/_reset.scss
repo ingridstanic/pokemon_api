@@ -7,8 +7,8 @@
 html,
 body {
   background: #ff2c2c;
-  background: radial-gradient(
-    circle,
+  background: linear-gradient(
+    to bottom,
     rgba(255, 44, 44, 1) 0%,
     rgba(255, 106, 0, 1) 50%,
     rgba(255, 203, 5, 1) 100%

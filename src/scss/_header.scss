@@ -3,5 +3,13 @@
 .header-container {
   display: flex;
   justify-content: center;
-  margin-top: $margin-lg;
+  padding-top: $padding-xlg;
+
+  .img-container {
+    width: 300px;
+
+    img {
+      width: 100%;
+    }
+  }
 }

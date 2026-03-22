@@ -1,5 +1,8 @@
+@use "variables" as *;
+
 #pokemonContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -19,6 +22,47 @@
       height: 200px;
       width: auto;
       filter: brightness(0%);
+    }
+  }
+
+  #guessForm {
+    display: flex;
+    gap: 0.5em;
+    #guessInput {
+      background-color: #c4d07a;
+      border: 3px solid $secondary;
+      color: #1a1a1a;
+      font-family: "Press Start 2P", monospace;
+      font-size: 1em;
+      padding: 0.85rem 0.7rem;
+      width: 220px;
+      outline: none;
+      box-shadow: inset 0 0 0 2px #e4f0a0;
+
+      &::placeholder {
+        color: #355c3a;
+      }
+    }
+    #guessBtn {
+      background-color: $accent;
+      border: 3px solid $secondary;
+      color: #1a1a1a;
+      font-family: "Press Start 2P", monospace;
+      font-size: 1em;
+      padding: 0.85rem 1.2rem;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #1d4f7c;
+      transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background-color 0.1s ease;
+
+      &:hover {
+        background-color: $secondary;
+        color: white;
+        transform: translate(1px, 1px);
+        box-shadow: -3px -3px 0 #1d4f7c;
+      }
     }
   }
 }
