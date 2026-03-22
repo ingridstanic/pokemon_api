@@ -13,8 +13,17 @@
     />
   </head>
   <body>
+    <header class="header-container">
+      <div class="img-container">
+        <img src="/src/assets/PokemonWho.png" alt="Pokemon ?" />
+      </div>
+    </header>
     <div id="app">
       <section id="pokemonContainer"></section>
+      <form id="guessForm">
+        <input placeholder="GUESS THE POKÈMON..." type="text" id="guessInput" />
+        <button id="guessBtn">GO!</button>
+      </form>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
