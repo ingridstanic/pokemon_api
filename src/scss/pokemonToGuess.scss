@@ -1,0 +1,24 @@
+#pokemonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .imgContainer {
+    background: url("../assets/explosion.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 140%;
+    width: 300px;
+    height: 300px;
+    position: relative;
+
+    .pokemonImg {
+      position: absolute;
+      top: 45px;
+      left: 45px;
+      height: 200px;
+      width: auto;
+      filter: brightness(0%);
+    }
+  }
+}
