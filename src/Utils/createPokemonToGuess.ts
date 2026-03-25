@@ -14,9 +14,6 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   const module = document.createElement("div");
   const messageContainer = document.createElement("div");
   const pokeballContainer = document.createElement("ul");
-  const pokeball1 = document.createElement("li");
-  const pokeball2 = document.createElement("li");
-  const pokeball3 = document.createElement("li");
   const imgContainer = document.createElement("div");
   const pokemonImg = document.createElement("img");
   const guessContainer = document.createElement("div");
@@ -24,7 +21,12 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   const guessInput = document.createElement("input");
   const guessBtn = document.createElement("button");
 
-  let pokeballs = [pokeball1, pokeball2, pokeball3];
+  let pokeballs = [];
+  for (let i = 0; i <= attempts - 1; i++) {
+    const li = document.createElement("li");
+    pokeballs.push(li);
+    pokeballContainer.appendChild(li);
+  }
 
   pokeballs.forEach((ball) => {
     ball.innerHTML = '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
@@ -79,9 +81,9 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   pokemonImg.src = pokemon.sprites.front_default;
   pokemonImg.alt = "Pokemon to guess";
 
-  pokeballContainer.appendChild(pokeball1);
-  pokeballContainer.appendChild(pokeball2);
-  pokeballContainer.appendChild(pokeball3);
+  // pokeballContainer.appendChild(pokeball1);
+  // pokeballContainer.appendChild(pokeball2);
+  // pokeballContainer.appendChild(pokeball3);
   imgContainer.appendChild(pokemonImg);
   guessForm.appendChild(guessInput);
   guessForm.appendChild(guessBtn);
