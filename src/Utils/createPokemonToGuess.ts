@@ -12,6 +12,7 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   }
 
   const module = document.createElement("div");
+  const messageContainer = document.createElement("div");
   const pokeballContainer = document.createElement("ul");
   const pokeball1 = document.createElement("li");
   const pokeball2 = document.createElement("li");
@@ -23,16 +24,19 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   const guessInput = document.createElement("input");
   const guessBtn = document.createElement("button");
 
+  let pokeballs = [pokeball1, pokeball2, pokeball3];
+
+  pokeballs.forEach((ball) => {
+    ball.innerHTML = '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
+  });
+
   module.id = "moduleContainer";
   module.className = "module-container";
+  messageContainer.id = "messageContainer";
+  messageContainer.className = "message-container";
   pokeballContainer.id = "pokeballContainer";
   pokeballContainer.className = "pokeball-container";
-  pokeball1.innerHTML =
-    '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
-  pokeball2.innerHTML =
-    '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
-  pokeball3.innerHTML =
-    '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
+  imgContainer.id = "imgContainer";
   imgContainer.className = "img-container";
   pokemonImg.className = "pokemon-img";
   guessContainer.className = "guess-container";
@@ -47,10 +51,21 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
 
     if (guessFromUser.toLowerCase() === pokemon.name.toLowerCase()) {
       pokemonImg.classList.add("show");
-      nextPokemon();
+      catchedPokemons++;
+      console.log("Total pokemons catched: ", catchedPokemons);
+
+      nextPokemon(pokemon);
     } else {
       console.log("you dumb as f*ck");
+      attempts--;
+      pokeballs.pop();
+      pokeballContainer.removeChild(pokeballContainer.lastChild as Node);
+      console.log("attempts left: ", attempts, pokeballs);
       tryAgain();
+
+      if (attempts === 0) {
+        gameOver();
+      }
     }
   });
 
@@ -73,6 +88,7 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
 
   guessContainer.appendChild(guessForm);
 
+  module.appendChild(messageContainer);
   module.appendChild(imgContainer);
   module.appendChild(pokeballContainer);
   module.appendChild(guessContainer);
@@ -80,17 +96,22 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   pokemonContainer?.appendChild(module);
 };
 
-export const nextPokemon = () => {
+export const nextPokemon = (pokemon: Pokemon) => {
   const guessContainer = document.getElementById("guessContainer");
+  const messageContainer = document.getElementById("messageContainer");
 
   if (guessContainer) {
     guessContainer.innerHTML = "";
   }
 
+  if (messageContainer) {
+    messageContainer.innerHTML = "";
+  }
+
   const message = document.createElement("p");
   const next = document.createElement("button");
 
-  message.innerHTML = "Correct!";
+  message.innerHTML = `You catched ${pokemon.name}. Pokémons catched: ${catchedPokemons}`;
   next.innerHTML = "Next Pokémon!";
 
   next.className = "next-btn";
@@ -99,16 +120,57 @@ export const nextPokemon = () => {
     getRandomPokemon();
   });
 
-  guessContainer?.appendChild(message);
+  messageContainer?.appendChild(message);
   guessContainer?.appendChild(next);
 };
 
 export const tryAgain = () => {
-  const guessContainer = document.getElementById("guessContainer");
+  const messageContainer = document.getElementById("messageContainer");
+
+  if (messageContainer) {
+    messageContainer.innerHTML = "";
+  }
 
   const message = document.createElement("p");
 
-  message.innerHTML = "Wrong guess! Try again!";
+  message.innerHTML = "Argh! Almost had it!";
 
-  guessContainer?.appendChild(message);
+  messageContainer?.appendChild(message);
+};
+
+export const gameOver = () => {
+  const imgContainer = document.getElementById("imgContainer");
+  const guessContainer = document.getElementById("guessContainer");
+  const messageContainer = document.getElementById("messageContainer");
+
+  if (imgContainer) {
+    imgContainer.innerHTML = "";
+  } else {
+    return;
+  }
+
+  if (guessContainer) {
+    guessContainer.innerHTML = "";
+  }
+
+  if (messageContainer) {
+    messageContainer.innerHTML = "";
+  }
+
+  imgContainer.classList.add("game-over");
+
+  const gameOverMessage = document.createElement("p");
+  const playAgainBtn = document.createElement("button");
+
+  gameOverMessage.innerHTML = "game over";
+  playAgainBtn.id = "playAgainBtn";
+  playAgainBtn.className = "play-again-btn";
+  playAgainBtn.innerHTML = "play again";
+
+  playAgainBtn.addEventListener("click", () => {
+    getRandomPokemon();
+  });
+
+  imgContainer?.appendChild(gameOverMessage);
+  guessContainer?.appendChild(playAgainBtn);
 };
