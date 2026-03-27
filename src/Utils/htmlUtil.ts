@@ -2,7 +2,8 @@ import type { Pokemon } from "../models/Pokemon";
 import { getRandomPokemonFromGen1 } from "../services/getRandomPokemon";
 
 let attempts = 3;
-let catchedPokemons = 0;
+let bestStreak = 0;
+let currentStreak = 0;
 
 export const createPokemonToGuess = (pokemon: Pokemon) => {
   const pokemonContainer = document.getElementById("pokemonContainer");
@@ -50,8 +51,7 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
 
     if (guessFromUser.toLowerCase() === pokemon.name.toLowerCase()) {
       pokemonImg.classList.add("show");
-      catchedPokemons++;
-      console.log("Total pokemons catched: ", catchedPokemons);
+      currentStreak++;
 
       nextPokemon(pokemon);
     } else {
@@ -105,7 +105,7 @@ export const nextPokemon = (pokemon: Pokemon) => {
   const message = document.createElement("p");
   const next = document.createElement("button");
 
-  message.innerHTML = `You catched ${pokemon.name}. Pokémons catched: ${catchedPokemons}`;
+  message.innerHTML = `You catched ${pokemon.name}.`;
   next.innerHTML = "Next Pokémon!";
 
   next.className = "next-btn";
@@ -133,6 +133,14 @@ export const tryAgain = () => {
 };
 
 export const gameOver = () => {
+  if (currentStreak > bestStreak) {
+    bestStreak = currentStreak;
+    saveStreakToLocalStorage();
+  }
+
+  console.log("beaststreak: ", bestStreak);
+  console.log("currentstreak: ", currentStreak);
+
   const imgContainer = document.getElementById("imgContainer");
   const guessContainer = document.getElementById("guessContainer");
   const messageContainer = document.getElementById("messageContainer");
@@ -164,8 +172,13 @@ export const gameOver = () => {
   playAgainBtn.addEventListener("click", () => {
     getRandomPokemonFromGen1();
     attempts = 3;
+    currentStreak = 0;
   });
 
   imgContainer?.appendChild(gameOverMessage);
   guessContainer?.appendChild(playAgainBtn);
+};
+
+export const saveStreakToLocalStorage = () => {
+  localStorage.setItem("BestStreak", bestStreak.toString());
 };
