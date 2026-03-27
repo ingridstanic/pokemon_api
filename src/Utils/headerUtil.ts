@@ -20,7 +20,6 @@ export const createNavbar = () => {
   if (!headerContainer) return;
 
   const nav = document.createElement("nav");
-  const ul = document.createElement("ul");
   const link = document.createElement("a");
 
   nav.id = "navContainer";
@@ -28,7 +27,6 @@ export const createNavbar = () => {
 
   link.innerHTML = `<img src="Pokédex.svg" alt="Pokédex icon.">`;
 
-  ul.appendChild(link);
-
-  headerContainer.appendChild(ul);
+  nav.appendChild(link);
+  headerContainer.appendChild(nav);
 };

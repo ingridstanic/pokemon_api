@@ -3,13 +3,26 @@
 .header-container {
   display: flex;
   justify-content: center;
-  padding: $padding-lg 0 $padding-lg 0;
+  align-items: center;
+  flex-direction: column;
+  padding: $padding-md 0 $padding-sm 0;
+  box-shadow: 4px 10px 8px rgba(0, 0, 0, 0.1);
 
   .img-container {
     width: 200px;
 
     img {
       width: 100%;
+    }
+  }
+
+  .nav-container {
+    a {
+      padding: $padding-sm;
+      display: inline-block;
+      img {
+        width: 30px;
+      }
     }
   }
 }
