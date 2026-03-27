@@ -21,14 +21,14 @@ export const createNavbar = () => {
 
   const nav = document.createElement("nav");
   const ul = document.createElement("ul");
-  const li = document.createElement("li");
+  const link = document.createElement("a");
 
   nav.id = "navContainer";
   nav.className = "nav-container";
 
-  li.innerHTML = "POKÉDEX";
+  link.innerHTML = `<img src="Pokédex.svg" alt="Pokédex icon.">`;
 
-  ul.appendChild(li);
+  ul.appendChild(link);
 
   headerContainer.appendChild(ul);
 };
