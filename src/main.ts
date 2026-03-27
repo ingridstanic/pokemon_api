@@ -1,6 +1,6 @@
 import "./scss/style.scss";
-import { getRandomPokemon } from "./services/getRandomPokemon";
-import { createHeader } from "./Utils/createHeader";
+import { getRandomPokemonFromGen1 } from "./services/getRandomPokemon";
+import { createHeader } from "./Utils/headerUtil";
 
 createHeader();
-getRandomPokemon();
+getRandomPokemonFromGen1();

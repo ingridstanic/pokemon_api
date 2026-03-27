@@ -1,9 +1,9 @@
 import type { Pokemon } from "../models/Pokemon";
-import { createPokemonToGuess } from "../Utils/createPokemonToGuess";
-import { randomNumber } from "../Utils/randomNumber";
+import { createPokemonToGuess } from "../Utils/htmlUtil";
+import { randomNumberGen1 } from "../Utils/randomNumber";
 
-export const getRandomPokemon = async () => {
-  const magicNumber = randomNumber();
+export const getRandomPokemonFromGen1 = async () => {
+  const magicNumber = randomNumberGen1();
 
   const response = await fetch(
     "https://pokeapi.co/api/v2/pokemon/" + magicNumber,
