@@ -2,8 +2,10 @@ import type { Pokemon } from "../models/Pokemon";
 import { getRandomPokemonFromGen1 } from "../services/getRandomPokemon";
 
 let attempts = 3;
+let totalPokemonsChaught = 0;
 let bestStreak = 0;
 let currentStreak = 0;
+let pokedex = [];
 
 export const createPokemonToGuess = (pokemon: Pokemon) => {
   const pokemonContainer = document.getElementById("pokemonContainer");
@@ -11,6 +13,8 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   if (pokemonContainer) {
     pokemonContainer.innerHTML = "";
   }
+
+  console.log(pokemon.name);
 
   const module = document.createElement("div");
   const messageContainer = document.createElement("div");
@@ -52,7 +56,19 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
     if (guessFromUser.toLowerCase() === pokemon.name.toLowerCase()) {
       pokemonImg.classList.add("show");
       currentStreak++;
-
+      totalPokemonsChaught++;
+      const caughtPokemon = {
+        id: pokemon.id,
+        name: pokemon.name,
+        sprites: pokemon.sprites,
+        types: pokemon.types,
+        weight: pokemon.weight,
+        height: pokemon.height,
+        cries: pokemon.cries,
+      };
+      pokedex.push(caughtPokemon);
+      savePokemonToLocalStorage(pokedex);
+      saveTotalPokemonsCaught();
       nextPokemon(pokemon);
     } else {
       attempts--;
@@ -181,4 +197,12 @@ export const gameOver = () => {
 
 export const saveStreakToLocalStorage = () => {
   localStorage.setItem("BestStreak", bestStreak.toString());
+};
+
+export const saveTotalPokemonsCaught = () => {
+  localStorage.setItem("Total Pokémons", totalPokemonsChaught.toString());
+};
+
+export const savePokemonToLocalStorage = (pokedex: Pokemon[]) => {
+  localStorage.setItem("Pokédex", JSON.stringify(pokedex));
 };
