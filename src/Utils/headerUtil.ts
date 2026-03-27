@@ -7,7 +7,7 @@ export const createHeader = () => {
   const img = document.createElement("img");
 
   imgContainer.className = "img-container";
-  img.src = "../assets/pokemonwho.png";
+  img.src = "pokemonwho.png";
   img.alt = "Whos that pokemon";
 
   imgContainer.appendChild(img);
