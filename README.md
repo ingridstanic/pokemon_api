@@ -1,4 +1,4 @@
-# Pokemon Guessing Game
+# Who's that Pokémon?
 
 A fun and interactive web application where players test their Pokemon knowledge by guessing random Pokemon based on their appearance. Fetch data in real-time from the PokemonAPI and challenge yourself to guess correctly within 3 attempts!
 
