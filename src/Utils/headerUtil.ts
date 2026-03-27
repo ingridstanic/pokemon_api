@@ -14,19 +14,21 @@ export const createHeader = () => {
   headerContainer.appendChild(imgContainer);
 };
 
-// export const createNavbar = () => {
-//   const headerContainer = document.getElementById("headerContainer");
+export const createNavbar = () => {
+  const headerContainer = document.getElementById("headerContainer");
 
-//   if (!headerContainer) return;
+  if (!headerContainer) return;
 
-//   const nav = document.createElement("nav");
-//   const ul = document.createElement("ul");
-//   const li = document.createElement("li");
+  const nav = document.createElement("nav");
+  const ul = document.createElement("ul");
+  const li = document.createElement("li");
 
-//   nav.id = "navContainer";
-//   nav.className = "nav-container";
+  nav.id = "navContainer";
+  nav.className = "nav-container";
 
-//   li.innerHTML = "POKÉDEX";
+  li.innerHTML = "POKÉDEX";
 
-//   ul.appendChild(li);
-// };
+  ul.appendChild(li);
+
+  headerContainer.appendChild(ul);
+};

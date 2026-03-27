@@ -3,4 +3,9 @@
 .message-container {
   position: absolute;
   top: 10px;
+  padding: 0 $padding-sm 0 $padding-sm;
+
+  p {
+    text-transform: uppercase;
+  }
 }

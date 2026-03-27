@@ -10,7 +10,5 @@ export const getRandomPokemonFromGen1 = async () => {
   );
   const data: Pokemon = await response.json();
 
-  console.log(data);
-
   createPokemonToGuess(data);
 };
