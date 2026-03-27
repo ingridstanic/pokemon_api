@@ -24,8 +24,7 @@ export const createPokemonToGuess = (pokemon: Pokemon) => {
   let pokeballs = [];
   for (let i = 0; i <= attempts - 1; i++) {
     const pokeball = document.createElement("li");
-    pokeball.innerHTML =
-      '<img src="../src/assets/pokeball.png" alt="Pokéball" >';
+    pokeball.innerHTML = '<img src="pokeball.png" alt="Pokéball" >';
     pokeballs.push(pokeball);
     pokeballContainer.appendChild(pokeball);
   }
